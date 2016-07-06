@@ -1,0 +1,23 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2008
+
+Project("{87F1EF00-40EB-92E4-D667-CE644F16C229}") = "infiniteJumper", "Assembly-CSharp.csproj", "{9F955BBA-7ACA-2E00-B35B-FB9889BE2331}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9F955BBA-7ACA-2E00-B35B-FB9889BE2331}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F955BBA-7ACA-2E00-B35B-FB9889BE2331}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F955BBA-7ACA-2E00-B35B-FB9889BE2331}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F955BBA-7ACA-2E00-B35B-FB9889BE2331}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
