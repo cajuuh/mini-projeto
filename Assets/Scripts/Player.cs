@@ -16,32 +16,27 @@ public class Player : MonoBehaviour {
 	public int		Speed;
 	public int 		JumpHeight;
 
-	// Use this for initialization
 	void Start () {
 		flipped = true;
+
 	}
 
-	// Update is called once per frame
 	void Update (){
+
 	}
 		
-	// For physics stuff
 	void FixedUpdate () {
+		HowToMove ();
+		HowToJump ();
+	}
 
-		//jump
-		if(isGrounded){
-			PlayerRigidbody.AddForce(new Vector2(0, JumpHeight));
-		}
 
-		isGrounded = Physics2D.OverlapCircle (GroundCheck.position, 0.2f, ground);
-
-		Anime.SetBool ("jump", !isGrounded);
-
+	void HowToMove (){
 		//move
 		Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
 		transform.position += move * Speed * Time.deltaTime;
 
-		//flip
+		//flip while moving
 		if(move.x > 0 && !flipped || move.x < 0 && flipped){
 			flipped = !flipped;
 			Vector3 scale = transform.localScale;
@@ -49,9 +44,13 @@ public class Player : MonoBehaviour {
 			transform.localScale = scale;
 
 		}
-
-		//wrap
-
 	}
 
+	void HowToJump (){
+		if(isGrounded)	PlayerRigidbody.AddForce(new Vector2(0, JumpHeight));
+
+		isGrounded = Physics2D.OverlapCircle (GroundCheck.position, 0.2f, ground);
+
+		Anime.SetBool ("jump", !isGrounded);
+	}
 }
