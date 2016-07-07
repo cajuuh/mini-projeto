@@ -1,26 +1,34 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
+using System.Runtime.ConstrainedExecution;
 
 public class Enemy : MonoBehaviour
 {
-    //variables
+    //prime variables
     public float moveSpeed;
     public float curveSpeed;
-    //private variables
+
+    //private prime varaiables
     private float fTime = 0f;
+    private bool flipped;
+
     //vectors
     private Vector3 vLastPos = Vector3.zero;
 
+    //read only
+    private readonly string END_OF_SCREEN = "EndOfScreen";
+
     void Start()
     {
-        fTime = 0f;
         vLastPos = transform.position;
+        flipped = false;
     }
 
     void Update()
     {
         SineMovement();
-        
+
     }
 
     private void SineMovement()
@@ -31,24 +39,27 @@ public class Enemy : MonoBehaviour
 
         Vector3 vSin = new Vector3(Mathf.Sin(fTime), -Mathf.Sin(fTime), 0);
         Vector3 vLin = new Vector3(-moveSpeed, 0, 0);
+        if (flipped)
+        {
+            vSin *= -1;
+            vLin *= -1;
+        }
 
         transform.position += (vSin + vLin) * Time.deltaTime;
 
-        Debug.DrawLine(vLastPos, transform.position, Color.green, 100);
+
+        //draw a line if you need to see the sin
+        //Debug.DrawLine(vLastPos, transform.position, Color.green, 100);
     }
 
-    void OnCollisionEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (col.tag == "EndOfScreen")
+        if (other.gameObject.tag == END_OF_SCREEN)
         {
-            Debug.Log("Bateu");
-            ;
+            flipped = !flipped;
+            Vector3 scale = transform.localScale;
+            scale.x *= -1;
+            transform.localScale = scale;
         }
     }
-
-
-
-
-
-
 }
