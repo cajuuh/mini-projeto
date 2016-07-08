@@ -109,7 +109,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 193674090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.348, y: -3.934, z: 0}
+  m_LocalPosition: {x: -0, y: -3.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1940833339}
@@ -456,7 +456,7 @@ GameObject:
   - 61: {fileID: 461365187}
   - 61: {fileID: 461365186}
   - 50: {fileID: 461365188}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EndOfScreen
   m_TagString: EndOfScreen
   m_Icon: {fileID: 0}
@@ -692,6 +692,7 @@ GameObject:
   - 50: {fileID: 1427270053}
   - 61: {fileID: 1427270052}
   - 114: {fileID: 1427270054}
+  - 114: {fileID: 1427270055}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -810,6 +811,19 @@ MonoBehaviour:
   sprite: {fileID: 1427270050}
   Speed: 6
   JumpHeight: 70
+--- !u!114 &1427270055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1427270048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759a1cef03bf0bd438e505784fbf4040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wrapWidth: 1
+  wrapHeight: 1
 --- !u!1 &1709711610
 GameObject:
   m_ObjectHideFlags: 0
