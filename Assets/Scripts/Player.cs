@@ -28,6 +28,10 @@ public class Player : MonoBehaviour {
 	void FixedUpdate () {
 		HowToMove ();
 		HowToJump ();
+
+        //added to make player wrap trough end of screen
+        Physics2D.IgnoreLayerCollision(8,12,true);
+	    ;
 	}
 
 
