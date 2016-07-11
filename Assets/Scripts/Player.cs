@@ -16,6 +16,16 @@ public class Player : MonoBehaviour {
 	public int		Speed;
 	public int 		JumpHeight;
 
+    //static variables
+    public static bool touchedFragil;
+    public static bool touchedNormal;
+    public static bool touchedPontuda;
+
+    //read only strings
+    private readonly string FRAGIL = "fragil";
+    private readonly string NORMAL = "normal";
+    private readonly string PONTUDA = "pontuda";
+
 	void Start () {
 		flipped = true;
 
@@ -31,8 +41,9 @@ public class Player : MonoBehaviour {
 
         //added to make player wrap trough end of screen
         Physics2D.IgnoreLayerCollision(8,12,true);
-	    ;
-	}
+
+        ControlLinearDrag();
+    }
 
 
 	void HowToMove (){
@@ -57,4 +68,32 @@ public class Player : MonoBehaviour {
 
 		Anime.SetBool ("jump", !isGrounded);
 	}
+
+    private void ControlLinearDrag()
+    {
+        if (this.GetComponent<Rigidbody2D>().velocity.y > 6f)
+        {
+            this.GetComponent<Rigidbody2D>().drag = 1;
+        }
+        else
+        {
+            this.GetComponent<Rigidbody2D>().drag = 0;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        this.GetComponent<Collider2D>().isTrigger = true;
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        this.GetComponent<Collider2D>().isTrigger = false;
+    }
+
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        this.GetComponent<Collider2D>().isTrigger = false;
+    }
 }

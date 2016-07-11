@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         SineMovement();
-
     }
 
     private void SineMovement()
