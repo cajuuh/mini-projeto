@@ -13,6 +13,7 @@ public class ManagerScript : MonoBehaviour
     private readonly string PLAYER = "Player";
 
     //panels
+    [SerializeField]
     public GameObject gameOverPanel;
 
     void Awake()
@@ -25,10 +26,25 @@ public class ManagerScript : MonoBehaviour
 
     void Update()
     {
+        //follow the camera
+        this.transform.position = camera.transform.position;
 
+        if (player.GetComponent<Player>().GetIsDead())
+        {
+            GameOver();
+        }
     }
 
     void FixedUpdate()
+    {
+        CameraUnfollow();
+    }
+
+    /// <summary>
+    /// if the velocity of the player is less than zero, the camera stop following his jumps
+    /// and restarts following if the velocity becomes greater than zero.
+    /// </summary>
+    private void CameraUnfollow()
     {
         if (player.GetComponent<Rigidbody2D>().velocity.y < 0)
         {
@@ -40,14 +56,17 @@ public class ManagerScript : MonoBehaviour
         }
     }
 
+    public void GameOver()
+    {
+        player.gameObject.SetActive(false);
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == PLAYER)
         {
-            Debug.Log("triggered!");
-            Destroy(player.gameObject);
-            gameOverPanel.SetActive(true);
-            Time.timeScale = 0;
+            GameOver();
         }
     }
 }
