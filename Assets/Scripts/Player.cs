@@ -9,7 +9,6 @@ public class Player : MonoBehaviour {
 	public LayerMask 		ground;
 	public Transform 		GroundCheck;
 	public SpriteRenderer	sprite;
-	public AudioClip 		sfxJump;
 
 	//Primitive variables
 	private bool	isGrounded;
@@ -64,7 +63,6 @@ public class Player : MonoBehaviour {
 
 	void HowToJump (){
 		if (isGrounded) {
-			SoundManager.instance.PlaySingle (sfxJump);
 			PlayerRigidbody.AddForce (new Vector2 (0, JumpHeight));
 
 		}
