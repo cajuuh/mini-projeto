@@ -9,6 +9,7 @@ TagManager:
   - pontuda
   - EndOfScreen
   - Chicken
+  - Platform
   layers:
   - Default
   - TransparentFX
