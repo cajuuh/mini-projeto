@@ -44,12 +44,12 @@ public class SpawnPlataforma : MonoBehaviour
             //A probabilidade para spawnar plataformas normais eh de 80%
             if (Random.value > 0.2)
             {
-                spawn();
+                Spawn();
             }
             //A probabilidade para spawnar plataformas frageis eh de 20%
             else
             {
-                spawnFrageis();
+                SpawnFrageis();
             }
         }
 
@@ -75,7 +75,7 @@ public class SpawnPlataforma : MonoBehaviour
     }
 
     //Metodo que spawna as plataformas
-    private void spawn()
+    private void Spawn()
     {
         float randPositionX = Random.Range(distanceLeft, distanceRight);
         float randPositionY = Random.Range(-0.3f, 0.3f);
@@ -97,7 +97,7 @@ public class SpawnPlataforma : MonoBehaviour
     }
 
     //metodo que spawna as plataformas frageis
-    private void spawnFrageis()
+    private void SpawnFrageis()
     {
         float randPositionX = Random.Range(distanceLeft, distanceRight);
         float randPositionY = Random.Range(-0.2f, 0.2f);

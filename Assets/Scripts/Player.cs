@@ -81,6 +81,12 @@ public class Player : MonoBehaviour {
         }
     }
 
+
+    public bool GetIsGrounded()
+    {
+        return isGrounded;
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         this.GetComponent<Collider2D>().isTrigger = true;
