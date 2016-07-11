@@ -5,7 +5,10 @@ using System.Runtime.ConstrainedExecution;
 
 public class Enemy : MonoBehaviour
 {
-    //prime variables
+	//Object variables
+	public AudioClip sfxChicken;
+
+	//prime variables
     public float moveSpeed;
     public float curveSpeed;
 
