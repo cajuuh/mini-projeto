@@ -11,7 +11,6 @@ public class SpawnPlataforma : MonoBehaviour
     public GameObject moeda;
     public List<GameObject> plataformas;
     public List<GameObject> plataformasFragil;
-    public List<GameObject> moedas;
     public Transform player;
     public double distanciaEntrePlataformas;
     private float AlturaMaxChar;
@@ -35,9 +34,7 @@ public class SpawnPlataforma : MonoBehaviour
         }
 
         //Instanciando a moeda
-        GameObject tempMoeda = Instantiate(moeda) as GameObject;
-        moedas.Add(tempMoeda);
-        tempMoeda.SetActive(false);
+        moeda.SetActive(false);
 
 
         AlturaMaxChar = player.position.y;
@@ -79,12 +76,10 @@ public class SpawnPlataforma : MonoBehaviour
                 tempPlataforma.SetActive(false);
             }
         }
-
-        GameObject tempMoeda = null;
-        if (player.position.y - moedas[0].transform.position.y >= distanciaParaSpawn)
+			
+        if (player.position.y - moeda.transform.position.y >= distanciaParaSpawn)
         {
-            tempMoeda = moedas[0];
-            tempMoeda.SetActive(false);
+            moeda.SetActive(false);
         }
 
     }
@@ -143,15 +138,11 @@ public class SpawnPlataforma : MonoBehaviour
         const float alturaMax = 1.8f;
         float randPositionX = Random.Range(distanceLeft, distanceRight);
         float randPositionY = Random.Range(alturaMin, alturaMax);
-        GameObject tempMoeda = null;
-        if (moedas[0].activeSelf == false)
+        if (moeda.activeSelf == false)
         {
-            tempMoeda = moedas[0];
-        }
-        if (tempMoeda != null)
-        {
-            tempMoeda.transform.position = new Vector3(randPositionX, plataforma.transform.position.y + randPositionY, plataforma.transform.position.z);
-            tempMoeda.SetActive(true);
+
+            moeda.transform.position = new Vector3(randPositionX, plataforma.transform.position.y + randPositionY, plataforma.transform.position.z);
+            moeda.SetActive(true);
         }
     }
 }

@@ -11,7 +11,7 @@ GameObject:
   - 212: {fileID: 21209314}
   - 95: {fileID: 9564314}
   - 114: {fileID: 11409676}
-  m_Layer: 9
+  m_Layer: 10
   m_Name: moeda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,11 +59,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerCheck: {fileID: 449942}
-  isOverlaping: 0
   Player:
     serializedVersion: 2
     m_Bits: 256
   coin: {fileID: 182684}
+  sfxCoin: {fileID: 8300000, guid: 38e97a3e275784747bd8776d7ecaba41, type: 3}
+  isOverlaping: 0
 --- !u!212 &21209314
 SpriteRenderer:
   m_ObjectHideFlags: 1

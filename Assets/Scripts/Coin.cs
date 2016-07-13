@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Coin : MonoBehaviour {
@@ -10,20 +11,28 @@ public class Coin : MonoBehaviour {
 	public AudioClip sfxCoin;
 
 	//Primitive variables
-	private bool isOverlaping;
+	public bool isOverlaping;
 
 	// Use this for initialization
 	void Start () {
-	
+		isOverlaping = false;	
 	}
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
+		GetACoin ();
+	}
+
+	void GetACoin(){
 		if(isOverlaping){
-            coin.SetActive(false) ;
+			SoundManager.instance.PlaySingle (sfxCoin);
+			coin.SetActive(false);
+			Vector3 posicao = coin.transform.position;
+			posicao.x = 4;
+			coin.transform.position = posicao;
 		}
 
 		isOverlaping = Physics2D.OverlapCircle (PlayerCheck.position, 0.2f, Player);
-	
+				
 	}
 }
