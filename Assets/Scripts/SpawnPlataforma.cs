@@ -8,11 +8,14 @@ public class SpawnPlataforma : MonoBehaviour
     public int maxPlataforma;
     public GameObject plataforma;
     public GameObject plataformaFragil;
+    public GameObject moeda;
     public List<GameObject> plataformas;
     public List<GameObject> plataformasFragil;
+    public List<GameObject> moedas;
     public Transform player;
     public double distanciaEntrePlataformas;
     private float AlturaMaxChar;
+
     // Use this for initialization
     void Start()
     {
@@ -30,6 +33,13 @@ public class SpawnPlataforma : MonoBehaviour
             plataformasFragil.Add(tempPlataformaFragil);
             tempPlataformaFragil.SetActive(false);
         }
+
+        //Instanciando a moeda
+        GameObject tempMoeda = Instantiate(moeda) as GameObject;
+        moedas.Add(tempMoeda);
+        tempMoeda.SetActive(false);
+
+
         AlturaMaxChar = player.position.y;
 
     }
@@ -55,7 +65,7 @@ public class SpawnPlataforma : MonoBehaviour
 
         // Checagem se as plataformas sairam do campo de visao do personagem, se sim, a plataforma sera desativada
         GameObject tempPlataforma = null;
-        float distanciaParaSpawn = 6.5f;
+        const float distanciaParaSpawn = 6.5f;
         for (int i = 0; i < maxPlataforma; i++)
         {
             if (player.position.y - plataformas[i].transform.position.y >= distanciaParaSpawn)
@@ -70,15 +80,22 @@ public class SpawnPlataforma : MonoBehaviour
             }
         }
 
-
+        GameObject tempMoeda = null;
+        if (player.position.y - moedas[0].transform.position.y >= distanciaParaSpawn)
+        {
+            tempMoeda = moedas[0];
+            tempMoeda.SetActive(false);
+        }
 
     }
 
     //Metodo que spawna as plataformas
     private void spawn()
     {
+        const float alturaMin = -0.2f;
+        const float alturaMax = 0.2f;
         float randPositionX = Random.Range(distanceLeft, distanceRight);
-        float randPositionY = Random.Range(-0.3f, 0.3f);
+        float randPositionY = Random.Range(alturaMin, alturaMax);
         GameObject tempPlataforma = null;
         for (int i = 0; i < maxPlataforma; i++)
         {
@@ -93,14 +110,17 @@ public class SpawnPlataforma : MonoBehaviour
         {
             tempPlataforma.transform.position = new Vector3(randPositionX, transform.position.y + randPositionY, transform.position.z);
             tempPlataforma.SetActive(true);
+            spawnMoeda(tempPlataforma);
         }
     }
 
     //metodo que spawna as plataformas frageis
     private void spawnFrageis()
     {
+        const float alturaMin = -0.2f;
+        const float alturaMax = 0.2f;
         float randPositionX = Random.Range(distanceLeft, distanceRight);
-        float randPositionY = Random.Range(-0.2f, 0.2f);
+        float randPositionY = Random.Range(alturaMin, alturaMax);
         GameObject tempPlataformaFragil = null;
         for (int i = 0; i < maxPlataforma; i++)
         {
@@ -114,7 +134,24 @@ public class SpawnPlataforma : MonoBehaviour
         {
             tempPlataformaFragil.transform.position = new Vector3(randPositionX, transform.position.y + randPositionY, transform.position.z);
             tempPlataformaFragil.SetActive(true);
+            spawnMoeda(tempPlataformaFragil);
         }
-
+    }
+    private void spawnMoeda(GameObject plataforma)
+    {
+        const float alturaMin = 1.5f;
+        const float alturaMax = 1.8f;
+        float randPositionX = Random.Range(distanceLeft, distanceRight);
+        float randPositionY = Random.Range(alturaMin, alturaMax);
+        GameObject tempMoeda = null;
+        if (moedas[0].activeSelf == false)
+        {
+            tempMoeda = moedas[0];
+        }
+        if (tempMoeda != null)
+        {
+            tempMoeda.transform.position = new Vector3(randPositionX, plataforma.transform.position.y + randPositionY, plataforma.transform.position.z);
+            tempMoeda.SetActive(true);
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Coin : MonoBehaviour {
 
 
 		if(isOverlaping){
-			Destroy (coin);
+            coin.SetActive(false) ;
 		}
 
 		isOverlaping = Physics2D.OverlapCircle (PlayerCheck.position, 0.2f, Player);
