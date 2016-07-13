@@ -54,12 +54,12 @@ public class SpawnPlataforma : MonoBehaviour
             //A probabilidade para spawnar plataformas normais eh de 80%
             if (Random.value > 0.2)
             {
-                spawn();
+                Spawn();
             }
             //A probabilidade para spawnar plataformas frageis eh de 20%
             else
             {
-                spawnFrageis();
+                SpawnFrageis();
             }
         }
 
@@ -90,7 +90,7 @@ public class SpawnPlataforma : MonoBehaviour
     }
 
     //Metodo que spawna as plataformas
-    private void spawn()
+    private void Spawn()
     {
         const float alturaMin = -0.2f;
         const float alturaMax = 0.2f;
@@ -115,7 +115,7 @@ public class SpawnPlataforma : MonoBehaviour
     }
 
     //metodo que spawna as plataformas frageis
-    private void spawnFrageis()
+    private void SpawnFrageis()
     {
         const float alturaMin = -0.2f;
         const float alturaMax = 0.2f;

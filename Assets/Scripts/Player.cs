@@ -4,34 +4,34 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	//Object variables
+    [SerializeField]
 	public Rigidbody2D 		PlayerRigidbody;
 	public Animator 		Anime;
 	public LayerMask 		ground;
 	public Transform 		GroundCheck;
 	public SpriteRenderer	sprite;
 
+
 	//Primitive variables
+    [SerializeField]
 	private bool	isGrounded;
 	private bool	flipped;
+    private bool    isDead;
+    private bool    isPontuda;
 	public int		Speed;
 	public int 		JumpHeight;
 
-    //static variables
-    public static bool touchedFragil;
-    public static bool touchedNormal;
-    public static bool touchedPontuda;
-
     //read only strings
-    private readonly string FRAGIL = "fragil";
-    private readonly string NORMAL = "normal";
+    private readonly string ENEMY = "Chicken";
     private readonly string PONTUDA = "pontuda";
 
 	void Start () {
 		flipped = true;
-
+	    isPontuda = false;
 	}
 
-	void Update (){
+	void Update ()
+    {
 
 	}
 		
@@ -62,7 +62,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void HowToJump (){
-		if(isGrounded)	PlayerRigidbody.AddForce(new Vector2(0, JumpHeight));
+		if (isGrounded) {
+			PlayerRigidbody.AddForce (new Vector2 (0, JumpHeight));
+
+		}
 
 		isGrounded = Physics2D.OverlapCircle (GroundCheck.position, 0.2f, ground);
 
@@ -81,9 +84,30 @@ public class Player : MonoBehaviour {
         }
     }
 
+
+    //private void DeathByPontuda()
+    //{
+    //    if(this.GetComponent<Collider2D>().IsTouching())
+    //}
+
+    public bool GetIsDead()
+    {
+        return isDead;
+    }
+
     void OnCollisionEnter2D(Collision2D coll)
     {
         this.GetComponent<Collider2D>().isTrigger = true;
+        
+        if (coll.gameObject.tag == ENEMY )
+        {
+            isDead = true;
+        }
+        if (isPontuda && coll.gameObject.tag == PONTUDA)
+        {
+            isDead = true;
+        }
+        isPontuda = false;
     }
 
     void OnCollisionStay2D(Collision2D coll)
@@ -95,5 +119,13 @@ public class Player : MonoBehaviour {
     void OnCollisionExit2D(Collision2D coll)
     {
         this.GetComponent<Collider2D>().isTrigger = false;
+        if (coll.gameObject.tag == PONTUDA)
+        {
+            isPontuda = true;
+        }
+        else
+        {
+            isPontuda = false;
+        }
     }
 }
