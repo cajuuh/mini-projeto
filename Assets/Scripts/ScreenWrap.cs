@@ -5,14 +5,12 @@ using System.Collections;
 public class ScreenWrap : MonoBehaviour {
 
 	public bool wrapWidth = true;
-	public bool wrapHeight = true;
 
 	private Renderer _renderer;
 	private Transform _transform;
 	private Camera _camera;
 	private Vector2 _viewportPosition;
 	private bool isWrappingWidth;
-	private bool isWrappingHeight;
 	private Vector2 _newPosition;
 
 	// Use this for initialization
@@ -23,7 +21,6 @@ public class ScreenWrap : MonoBehaviour {
 		_newPosition = Vector2.zero;
 		_viewportPosition = _transform.position;
 		isWrappingWidth = false;
-		isWrappingHeight = false;
 	
 	}
 	
@@ -37,7 +34,6 @@ public class ScreenWrap : MonoBehaviour {
 
 		if(isVisible){
 			isWrappingWidth = false;
-			isWrappingHeight = false;
 
 		}
 
@@ -56,21 +52,6 @@ public class ScreenWrap : MonoBehaviour {
 
 				}
 			}	
-		}
-
-		if(wrapHeight){
-			if (!isWrappingHeight) {
-				if (_viewportPosition.y > 1) {
-					_newPosition.y = _camera.ViewportToWorldPoint (Vector2.zero).y;
-					isWrappingHeight = true;
-
-				} else if (_viewportPosition.y < 0){
-					_newPosition.y = _camera.ViewportToWorldPoint (Vector2.one).y;
-					isWrappingHeight = true;
-
-				}
-			}	
-			
 		}
 
 		_transform.position = _newPosition;
