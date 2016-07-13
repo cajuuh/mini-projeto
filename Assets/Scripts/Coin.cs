@@ -20,8 +20,7 @@ public class Coin : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(isOverlaping){
-			SoundManager.instance.PlaySingle (sfxCoin);
-			Destroy (coin);
+            coin.SetActive(false) ;
 		}
 
 		isOverlaping = Physics2D.OverlapCircle (PlayerCheck.position, 0.2f, Player);
