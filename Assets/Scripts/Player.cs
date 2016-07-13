@@ -62,7 +62,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void HowToJump (){
-		if(isGrounded)	PlayerRigidbody.AddForce(new Vector2(0, JumpHeight));
+		if (isGrounded) {
+			PlayerRigidbody.AddForce (new Vector2 (0, JumpHeight));
+
+		}
 
 		isGrounded = Physics2D.OverlapCircle (GroundCheck.position, 0.2f, ground);
 
