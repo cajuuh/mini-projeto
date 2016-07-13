@@ -45,7 +45,6 @@ public class Player : MonoBehaviour {
         ControlLinearDrag();
     }
 
-
 	void HowToMove (){
 		//move
 		Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ManagerScript : MonoBehaviour
@@ -9,12 +10,24 @@ public class ManagerScript : MonoBehaviour
     [HideInInspector]
     public GameObject camera;
 
+	public GameObject coin;
+
     //read only
     private readonly string PLAYER = "Player";
+
+	public Text scoreText;
+
+	public int score; 
 
     //panels
     [SerializeField]
     public GameObject gameOverPanel;
+
+	void Start()
+	{
+		score = 0;
+		scoreText.text = "Pontos: " + score.ToString ();
+	}
 
     void Awake()
     {
@@ -33,6 +46,11 @@ public class ManagerScript : MonoBehaviour
         {
             GameOver();
         }
+
+		if(coin.GetComponent<Coin>().isOverlaping){
+			SetScore (10);	
+		}
+
     }
 
     void FixedUpdate()
@@ -62,6 +80,7 @@ public class ManagerScript : MonoBehaviour
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
     }
+
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == PLAYER)
@@ -69,4 +88,10 @@ public class ManagerScript : MonoBehaviour
             GameOver();
         }
     }
+
+	public void SetScore(int points){
+		score += points;
+		scoreText.text = "Pontos: " + score.ToString ();
+
+	}
 }
