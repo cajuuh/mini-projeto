@@ -20,6 +20,9 @@ public class Player : MonoBehaviour {
     private bool    isPontuda;
     private bool fromBellow; //used to set if player is comming from below on PONTUDA
     private bool onFragil;
+
+    private Gyroscope control;
+
 	public int		Speed;
 	public int 		JumpHeight;
 
@@ -31,7 +34,8 @@ public class Player : MonoBehaviour {
 	void Start () {
 		flipped = true;
 	    isPontuda = false;
-	}
+        control.enabled = true;
+    }
 		
 	void FixedUpdate () {
 		HowToMove ();
@@ -44,10 +48,12 @@ public class Player : MonoBehaviour {
         ControlLinearDrag();
     }
 
+
 	void HowToMove (){
-		//move
-		Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
-		transform.position += move * Speed * Time.deltaTime;
+        //move
+        //Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
+        Vector3 move = new Vector3(control.rotationRate.y, 0, 0);
+        transform.position += move * Speed * Time.deltaTime;
 
 		//flip while moving
 		if(move.x > 0 && !flipped || move.x < 0 && flipped){
