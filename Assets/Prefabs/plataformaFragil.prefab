@@ -11,6 +11,7 @@ GameObject:
   - 212: {fileID: 21239524}
   - 61: {fileID: 6135264}
   - 251: {fileID: 25133406}
+  - 114: {fileID: 11455956}
   m_Layer: 9
   m_Name: plataformaFragil
   m_TagString: fragil
@@ -44,6 +45,17 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.08296633}
   serializedVersion: 2
   m_Size: {x: 1.74, y: 0.1579572}
+--- !u!114 &11455956
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 174818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce020189f3dca041aa1f6ff4140e1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &21239524
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -87,10 +99,10 @@ PlatformEffector2D:
     m_Bits: 256
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 12
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

@@ -108,6 +108,10 @@ public class Player : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D coll)
     {
+        if (coll.gameObject.tag == FRAGIL)
+        {
+            onFragil = true;
+        }
         if(coll.gameObject.tag == PONTUDA && coll.contacts.Length > 0)
         {
             ContactPoint2D contact = coll.contacts[0];
@@ -116,10 +120,6 @@ public class Player : MonoBehaviour {
                 fromBellow = true;
             }
         }
-        if (coll.gameObject.tag == FRAGIL)
-        {
-            onFragil = true;
-        }
     }
 
     void OnCollisionStay2D(Collision2D coll)
@@ -127,6 +127,10 @@ public class Player : MonoBehaviour {
         if (coll.gameObject.tag == ENEMY)
         {
             isDead = true;
+        }
+        if (coll.gameObject.tag == FRAGIL)
+        {
+            onFragil = true;
         }
     }
 
@@ -139,7 +143,7 @@ public class Player : MonoBehaviour {
 
         if (coll.gameObject.tag == FRAGIL)
         {
-            onFragil = false;
+            onFragil = true;
         }
     }
 }

@@ -8,7 +8,6 @@ public class ManagerScript : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject camera;
     [HideInInspector] public GameObject coin;
-    public GameObject fragilPlatform;
 
     //read only
     private readonly string PLAYER = "Player";
@@ -58,7 +57,6 @@ public class ManagerScript : MonoBehaviour
             SetScore(10);
         }
 
-        StartCoroutine(FadeFragil(1.0f, 1.0f));
     }
 
     void FixedUpdate()
@@ -84,6 +82,7 @@ public class ManagerScript : MonoBehaviour
 
     public void GameOver()
     {
+        GameObject.FindGameObjectWithTag(SOUND).SetActive(false);
         player.gameObject.SetActive(false);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
@@ -94,7 +93,6 @@ public class ManagerScript : MonoBehaviour
         if (col.gameObject.tag == PLAYER)
         {
             GameOver();
-            GameObject.FindGameObjectWithTag(SOUND).SetActive(false);
         }
     }
 
@@ -108,33 +106,6 @@ public class ManagerScript : MonoBehaviour
     void SetText()
     {
         scoreText.text = "Pontos: " + score.ToString();
-    }
-
-
-
-    //void lerpAlpha()
-    //{
-    //    float lerp = Mathf.PingPong(Time.time, duration)/duration;
-    //    alpha = Mathf.Lerp(0.0f, 1.0f, lerp);
-    //    fragilPlatform.GetComponent<SpriteRenderer>().color.a -= alpha;
-    //}
-
-    /// <summary>
-    /// Fade out the platform within the player
-    /// </summary>
-    /// <param name="aValue">amount of fade</param>
-    /// <param name="aTime">time lapse'till total fade</param>
-    /// <returns>null in yield</returns>
-    IEnumerator FadeFragil(float aValue, float aTime)
-    {
-        float alpha = fragilPlatform.GetComponent<SpriteRenderer>().color.a;
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime/aTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(alpha,aValue, t));
-            fragilPlatform.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
     }
 }
 

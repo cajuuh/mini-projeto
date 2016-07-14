@@ -249,6 +249,7 @@ GameObject:
   - 212: {fileID: 234991927}
   - 61: {fileID: 234991928}
   - 251: {fileID: 234991929}
+  - 114: {fileID: 234991930}
   m_Layer: 9
   m_Name: plataformaFragil
   m_TagString: fragil
@@ -325,10 +326,21 @@ PlatformEffector2D:
     m_Bits: 256
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 12
+--- !u!114 &234991930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 234991925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce020189f3dca041aa1f6ff4140e1b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &261894695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,10 +1268,10 @@ PlatformEffector2D:
     m_Bits: 256
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 12
 --- !u!1 &1427270048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,7 +1475,6 @@ MonoBehaviour:
   player: {fileID: 1427270048}
   camera: {fileID: 604151145}
   coin: {fileID: 1383673431}
-  fragilPlatform: {fileID: 0}
   scoreText: {fileID: 435414406}
   score: 0
   gameOverPanel: {fileID: 1851710413}
@@ -1615,10 +1626,10 @@ PlatformEffector2D:
     m_Bits: 256
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 12
 --- !u!1 &1851710413
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,10 +1828,10 @@ PlatformEffector2D:
     m_Bits: 256
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0
-  m_SurfaceArc: 90
+  m_SurfaceArc: 180
   m_UseSideFriction: 0
   m_UseSideBounce: 0
-  m_SideArc: 1
+  m_SideArc: 12
 --- !u!1 &1940833338
 GameObject:
   m_ObjectHideFlags: 0
