@@ -29,11 +29,6 @@ public class Player : MonoBehaviour {
 		flipped = true;
 	    isPontuda = false;
 	}
-
-	void Update ()
-    {
-
-	}
 		
 	void FixedUpdate () {
 		HowToMove ();
@@ -61,7 +56,10 @@ public class Player : MonoBehaviour {
 	}
 
 	void HowToJump (){
-		if (isGrounded) {
+		float velY = PlayerRigidbody.velocity.y;
+
+		if (isGrounded && velY <= 0) {
+			PlayerRigidbody.velocity = new Vector2 (0, 0);
 			PlayerRigidbody.AddForce (new Vector2 (0, JumpHeight));
 
 		}
@@ -83,7 +81,6 @@ public class Player : MonoBehaviour {
         }
     }
 
-
     //private void DeathByPontuda()
     //{
     //    if(this.GetComponent<Collider2D>().IsTouching())
@@ -94,37 +91,4 @@ public class Player : MonoBehaviour {
         return isDead;
     }
 
-    void OnCollisionEnter2D(Collision2D coll)
-    {
-        this.GetComponent<Collider2D>().isTrigger = true;
-        
-        if (coll.gameObject.tag == ENEMY )
-        {
-            isDead = true;
-        }
-        if (isPontuda && coll.gameObject.tag == PONTUDA)
-        {
-            isDead = true;
-        }
-        isPontuda = false;
-    }
-
-    void OnCollisionStay2D(Collision2D coll)
-    {
-        this.GetComponent<Collider2D>().isTrigger = false;
-    }
-
-
-    void OnCollisionExit2D(Collision2D coll)
-    {
-        this.GetComponent<Collider2D>().isTrigger = false;
-        if (coll.gameObject.tag == PONTUDA)
-        {
-            isPontuda = true;
-        }
-        else
-        {
-            isPontuda = false;
-        }
-    }
 }

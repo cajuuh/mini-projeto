@@ -9,14 +9,16 @@ public class ManagerScript : MonoBehaviour
     public GameObject player;
     [HideInInspector]
     public GameObject camera;
-
+	[HideInInspector]
 	public GameObject coin;
 
     //read only
     private readonly string PLAYER = "Player";
 
+	//text variable
 	public Text scoreText;
 
+	//prime variable
 	public int score; 
 
     //panels
@@ -26,7 +28,7 @@ public class ManagerScript : MonoBehaviour
 	void Start()
 	{
 		score = 0;
-		scoreText.text = "Pontos: " + score.ToString ();
+		setText ();
 	}
 
     void Awake()
@@ -91,7 +93,12 @@ public class ManagerScript : MonoBehaviour
 
 	public void SetScore(int points){
 		score += points;
-		scoreText.text = "Pontos: " + score.ToString ();
+		setText ();
 
 	}
+
+	void setText(){
+		scoreText.text = "Pontos: " + score.ToString ();
+	}
 }
+
