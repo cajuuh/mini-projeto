@@ -18,12 +18,15 @@ public class Player : MonoBehaviour {
 	private bool	flipped;
     private bool    isDead;
     private bool    isPontuda;
+    private bool fromBellow; //used to set if player is comming from below on PONTUDA
+    private bool onFragil;
 	public int		Speed;
 	public int 		JumpHeight;
 
     //read only strings
     private readonly string ENEMY = "Chicken";
     private readonly string PONTUDA = "pontuda";
+    private readonly string FRAGIL = "fragil";
 
 	void Start () {
 		flipped = true;
@@ -35,6 +38,7 @@ public class Player : MonoBehaviour {
 		HowToJump ();
 
         //added to make player wrap trough end of screen
+        //TODO change those magic numbers
         Physics2D.IgnoreLayerCollision(8,12,true);
 
         ControlLinearDrag();
@@ -91,4 +95,55 @@ public class Player : MonoBehaviour {
         return isDead;
     }
 
+    public bool GetOnFragil()
+    {
+        return onFragil;
+    }
+
+    public void SetOnFragil(bool fragil)
+    {
+        onFragil = fragil;
+    }
+
+
+    void OnCollisionEnter2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == FRAGIL)
+        {
+            onFragil = true;
+        }
+        if(coll.gameObject.tag == PONTUDA && coll.contacts.Length > 0)
+        {
+            ContactPoint2D contact = coll.contacts[0];
+            if (Vector2.Dot(contact.normal, Vector2.up) > 0.5)
+            {
+                fromBellow = true;
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == ENEMY)
+        {
+            isDead = true;
+        }
+        if (coll.gameObject.tag == FRAGIL)
+        {
+            onFragil = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D coll)
+    {
+        if (coll.gameObject.tag == PONTUDA && fromBellow)
+        {
+            isDead = true;
+        }
+
+        if (coll.gameObject.tag == FRAGIL)
+        {
+            onFragil = true;
+        }
+    }
 }

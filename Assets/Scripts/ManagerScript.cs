@@ -5,31 +5,32 @@ using System.Collections;
 public class ManagerScript : MonoBehaviour
 {
     //reference GameObjects hide in editor
-    [HideInInspector]
-    public GameObject player;
-    [HideInInspector]
-    public GameObject camera;
-	[HideInInspector]
-	public GameObject coin;
+    [HideInInspector] public GameObject player;
+    [HideInInspector] public GameObject camera;
+    [HideInInspector] public GameObject coin;
 
     //read only
     private readonly string PLAYER = "Player";
+    private readonly string SOUND = "Sound";
 
-	//text variable
-	public Text scoreText;
+    //text variable
+    public Text scoreText;
 
-	//prime variable
-	public int score; 
+    //prime variable
+    public int score;
+
+    //private variables
+    private float duration = 1.0f;
+    private float alpha = 1.0f;
 
     //panels
-    [SerializeField]
-    public GameObject gameOverPanel;
+    [SerializeField] public GameObject gameOverPanel;
 
-	void Start()
-	{
-		score = 0;
-		setText ();
-	}
+    void Start()
+    {
+        score = 0;
+        SetText();
+    }
 
     void Awake()
     {
@@ -44,14 +45,17 @@ public class ManagerScript : MonoBehaviour
         //follow the camera
         this.transform.position = camera.transform.position;
 
+        //death and game over
         if (player.GetComponent<Player>().GetIsDead())
         {
             GameOver();
         }
 
-		if(coin.GetComponent<Coin>().isOverlaping){
-			SetScore (10);	
-		}
+        //TODO comment
+        if (coin.GetComponent<Coin>().isOverlaping)
+        {
+            SetScore(10);
+        }
 
     }
 
@@ -78,6 +82,7 @@ public class ManagerScript : MonoBehaviour
 
     public void GameOver()
     {
+        GameObject.FindGameObjectWithTag(SOUND).SetActive(false);
         player.gameObject.SetActive(false);
         gameOverPanel.SetActive(true);
         Time.timeScale = 0;
@@ -91,14 +96,16 @@ public class ManagerScript : MonoBehaviour
         }
     }
 
-	public void SetScore(int points){
-		score += points;
-		setText ();
+    public void SetScore(int points)
+    {
+        score += points;
+        SetText();
 
-	}
+    }
 
-	void setText(){
-		scoreText.text = "Pontos: " + score.ToString ();
-	}
+    void SetText()
+    {
+        scoreText.text = "Pontos: " + score.ToString();
+    }
 }
 

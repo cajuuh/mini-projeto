@@ -10,6 +10,7 @@ TagManager:
   - EndOfScreen
   - Chicken
   - Platform
+  - Sound
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,10 @@ public class SpawnPlataforma : MonoBehaviour
     public double distanciaEntrePlataformas;
     private float AlturaMaxChar;
 
+
+    //variable of color to control fade of frageis
+    Color newColor = new Color(1, 1, 1, 1);
+
     // Use this for initialization
     void Start()
     {
@@ -122,6 +126,7 @@ public class SpawnPlataforma : MonoBehaviour
             if (plataformasFragil[i].activeSelf == false)
             {
                 tempPlataformaFragil = plataformasFragil[i];
+                tempPlataformaFragil.GetComponent<SpriteRenderer>().color = newColor;
                 break;
             }
         }
