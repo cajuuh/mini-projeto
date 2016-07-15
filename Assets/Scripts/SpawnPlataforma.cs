@@ -16,6 +16,7 @@ public class SpawnPlataforma : MonoBehaviour
     public Transform player;
     public double distanciaEntrePlataformas;
     private float AlturaMaxChar;
+    private int pontuacaoPorPlataforma;
 
 
     //variable of color to control fade of frageis
@@ -51,6 +52,8 @@ public class SpawnPlataforma : MonoBehaviour
         //Instanciando a moeda
         moeda.SetActive(false);
 
+        //pontuacao por plataforma passada
+        pontuacaoPorPlataforma = 0;
 
         AlturaMaxChar = player.position.y;
 
@@ -91,6 +94,8 @@ public class SpawnPlataforma : MonoBehaviour
             if (player.position.y - plataformas[i].transform.position.y >= distanciaParaSpawn)
             {
                 tempPlataforma = plataformas[i];
+                if (tempPlataforma.activeSelf == true)
+                    pontuacaoPorPlataforma += 1;
                 tempPlataforma.SetActive(false);
             }
         }
@@ -99,6 +104,7 @@ public class SpawnPlataforma : MonoBehaviour
             if (player.position.y - plataformasFragil[i].transform.position.y >= distanciaParaSpawn)
             {
                 tempPlataforma = plataformasFragil[i];
+                if (tempPlataforma.activeSelf == true)
                 tempPlataforma.SetActive(false);
             }
         }
@@ -107,6 +113,7 @@ public class SpawnPlataforma : MonoBehaviour
             if (player.position.y - plataformasPontudas[i].transform.position.y >= distanciaParaSpawn)
             {
                 tempPlataforma = plataformasPontudas[i];
+                if (tempPlataforma.activeSelf == true)
                 tempPlataforma.SetActive(false);
             }
         }
@@ -223,5 +230,10 @@ public class SpawnPlataforma : MonoBehaviour
             tempPlataformaPontuda.transform.position = new Vector3(randPositionX, plataforma.position.y + 0.122f, plataforma.position.z);
             tempPlataformaPontuda.SetActive(true);
         }
+    }
+
+    public int getPontuacao()
+    {
+        return pontuacaoPorPlataforma;
     }
 }
