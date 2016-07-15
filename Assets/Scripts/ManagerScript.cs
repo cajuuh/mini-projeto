@@ -25,19 +25,26 @@ public class ManagerScript : MonoBehaviour
 
     //panels
     [SerializeField] public GameObject gameOverPanel;
+	[SerializeField] public GameObject retry;
+	[SerializeField] public GameObject menu;
 
     void Start()
     {
         score = 0;
         SetText();
+		retry.SetActive(false);
+		menu.SetActive(false);
     }
 
     void Awake()
     {
-        if (gameOverPanel.activeSelf)
+		if (gameOverPanel.activeSelf)
         {
             gameOverPanel.SetActive(false);
+
         }
+
+
     }
 
     void Update()
@@ -82,11 +89,19 @@ public class ManagerScript : MonoBehaviour
 
     public void GameOver()
     {
-        GameObject.FindGameObjectWithTag(SOUND).SetActive(false);
         player.gameObject.SetActive(false);
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0;
+		retry.SetActive (true);
+		menu.SetActive (true);
     }
+
+	public void RestartGame(){
+		Application.LoadLevel (Application.loadedLevel);
+	}
+
+	public void BackToMenu(){
+		Application.LoadLevel ("Menu");
+	}
 
     void OnTriggerEnter2D(Collider2D col)
     {
