@@ -47,7 +47,7 @@ public class SpawnPlataforma : MonoBehaviour
             plataformasPontudas.Add(tempPlataformaPontuda);
             tempPlataformaPontuda.SetActive(false);
         }
-        
+
         //Instanciando a moeda
         moeda.SetActive(false);
 
@@ -74,7 +74,7 @@ public class SpawnPlataforma : MonoBehaviour
                 SpawnFrageis();
             }
         }
-        
+
 
         GameObject tempPlataforma = null;
         const float distanciaParaSpawn = 6.5f;
@@ -96,7 +96,7 @@ public class SpawnPlataforma : MonoBehaviour
         }
         for (int i = 0; i < maxPlataforma; i++)
         {
-            if(player.position.y - plataformasFragil[i].transform.position.y >= distanciaParaSpawn)
+            if (player.position.y - plataformasFragil[i].transform.position.y >= distanciaParaSpawn)
             {
                 tempPlataforma = plataformasFragil[i];
                 tempPlataforma.SetActive(false);
@@ -112,7 +112,7 @@ public class SpawnPlataforma : MonoBehaviour
         }
 
 
- 
+
 
     }
 
