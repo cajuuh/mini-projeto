@@ -11,8 +11,9 @@ public class ManagerScript : MonoBehaviour
     public GameObject camera;
     [HideInInspector]
     public GameObject coin;
+    [HideInInspector]
+    public GameObject spawn;
 
-    public Text debugText;
 
     //read only
     private readonly string PLAYER = "Player";
