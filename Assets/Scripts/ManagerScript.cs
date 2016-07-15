@@ -5,10 +5,15 @@ using System.Collections;
 public class ManagerScript : MonoBehaviour
 {
     //reference GameObjects hide in editor
-    [HideInInspector] public GameObject player;
-    [HideInInspector] public GameObject camera;
-    [HideInInspector] public GameObject coin;
-    [HideInInspector] public GameObject spawn;
+    [HideInInspector]
+    public GameObject player;
+    [HideInInspector]
+    public GameObject camera;
+    [HideInInspector]
+    public GameObject coin;
+    [HideInInspector]
+    public GameObject spawn;
+
 
     //read only
     private readonly string PLAYER = "Player";
