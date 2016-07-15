@@ -777,8 +777,8 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -137, y: 404}
-  m_SizeDelta: {x: 190, y: 24}
+  m_AnchoredPosition: {x: -90, y: 471}
+  m_SizeDelta: {x: 360, y: 24}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435414406
 MonoBehaviour:
@@ -1402,10 +1402,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   GroundCheck: {fileID: 1864067769}
-  sprite: {fileID: 1427270050}
   isGrounded: 0
   Speed: 4
   JumpHeight: 400
+  sensitivity: 2
 --- !u!114 &1427270055
 MonoBehaviour:
   m_ObjectHideFlags: 0

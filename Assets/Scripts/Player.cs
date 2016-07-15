@@ -5,26 +5,31 @@ public class Player : MonoBehaviour {
 
 	//Object variables
     [SerializeField]
+    [Header("Game Objects")]
 	public Rigidbody2D 		PlayerRigidbody;
 	public Animator 		Anime;
 	public LayerMask 		ground;
 	public Transform 		GroundCheck;
-	public SpriteRenderer	sprite;
 
 
 	//Primitive variables
     [SerializeField]
+    //bool
 	private bool	isGrounded;
 	private bool	flipped;
     private bool    isDead;
     private bool    isPontuda;
     private bool fromBellow; //used to set if player is comming from below on PONTUDA
     private bool onFragil;
-
-    private Gyroscope control;
-
+    [SerializeField]
+    //int
+    [Header("Integers")]
 	public int		Speed;
 	public int 		JumpHeight;
+    [Header("Floats")]
+    [Range(0.0f, 10.0f)]
+    public float sensitivity;
+
 
     //read only strings
     private readonly string ENEMY = "Chicken";
@@ -34,8 +39,8 @@ public class Player : MonoBehaviour {
 	void Start () {
 		flipped = true;
 	    isPontuda = false;
-        control.enabled = true;
-    }
+	    sensitivity = 2;
+	}
 		
 	void FixedUpdate () {
 		HowToMove ();
@@ -52,18 +57,52 @@ public class Player : MonoBehaviour {
 	void HowToMove (){
         //move
         //Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
-        Vector3 move = new Vector3(Input.acceleration.x, 0, 0);
-        transform.position += move * Speed * Time.deltaTime;
 
-		//flip while moving
-		if(move.x > 0 && !flipped || move.x < 0 && flipped){
-			flipped = !flipped;
-			Vector3 scale = transform.localScale;
-			scale.x *= -1;
-			transform.localScale = scale;
+        if (Input.acceleration.x >= 0 || Input.acceleration.x <= 0)
+        {
+            Vector3 move = new Vector3(Input.acceleration.normalized.x * sensitivity, 0, 0);
 
-		}
-	}
+            transform.position += move * Speed * Time.deltaTime;
+
+            //flip while moving
+            if (move.x > 0 && !flipped || move.x < 0 && flipped)
+            {
+                flipped = !flipped;
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+
+            }
+        }
+        else if ((Input.acceleration.y >= 0 || Input.acceleration.y <= 0))
+        {
+            Vector3 move = new Vector3(Input.acceleration.normalized.y * sensitivity, 0, 0);
+
+            transform.position += move * Speed * Time.deltaTime;
+
+            //flip while moving
+            if (move.x > 0 && !flipped || move.x < 0 && flipped)
+            {
+                flipped = !flipped;
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+
+            }
+        }
+
+        //transform.position += move * Speed * Time.deltaTime;
+
+        ////flip while moving
+        //if (move.x > 0 && !flipped || move.x < 0 && flipped)
+        //{
+        //    flipped = !flipped;
+        //    Vector3 scale = transform.localScale;
+        //    scale.x *= -1;
+        //    transform.localScale = scale;
+
+        //}
+    }
 
 	void HowToJump (){
 		float velY = PlayerRigidbody.velocity.y;
