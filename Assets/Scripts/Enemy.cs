@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
 {
 	//Object variables
 	public AudioClip sfxChicken;
+	public Transform player;
 
 	//prime variables
     public float moveSpeed;
@@ -62,6 +63,19 @@ public class Enemy : MonoBehaviour
             Vector3 scale = transform.localScale;
             scale.x *= -1;
             transform.localScale = scale;
+			float number = UnityEngine.Random.Range 
+				(
+					player.position.y - 5f, 
+					player.position.y + 5f
+				);
+			Vector3 position = new Vector3 
+				(
+					transform.position.x,
+					number,
+					transform.position.z
+				);
+					
+			transform.position = position;
         }
     }
 }
