@@ -20,9 +20,12 @@ public class ManagerScript : MonoBehaviour
     private readonly string SOUND = "Sound";
 
     //text variable
+    [Header("Text")]
     public Text scoreText;
+    public Text gameOverScoreText;
 
     //prime variable
+    [Header("Integer")]
     public int score;
 
     //private variables
@@ -98,6 +101,7 @@ public class ManagerScript : MonoBehaviour
     {
         player.gameObject.SetActive(false);
         gameOverPanel.SetActive(true);
+        gameOverScoreText.text = "Seu score:" + "\n" + score;
 		retry.SetActive (true);
 		menu.SetActive (true);
     }

@@ -5,13 +5,12 @@ public class Player : MonoBehaviour {
 
 	//Object variables
     [SerializeField]
-    [Header("Game Objects")]
+    [Header("Game Object")]
 	public Rigidbody2D 		PlayerRigidbody;
 	public Animator 		Anime;
 	public LayerMask 		ground;
 	public Transform 		GroundCheck;
-
-
+    
 	//Primitive variables
     [SerializeField]
     //bool
@@ -23,10 +22,10 @@ public class Player : MonoBehaviour {
     private bool onFragil;
     [SerializeField]
     //int
-    [Header("Integers")]
+    [Header("Integer")]
 	public int		Speed;
 	public int 		JumpHeight;
-    [Header("Floats")]
+    [Header("Float")]
     [Range(0.0f, 10.0f)]
     public float sensitivity;
 
@@ -56,7 +55,7 @@ public class Player : MonoBehaviour {
 
 	void HowToMove (){
         //move
-        Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
+        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
 
 //        if (Input.acceleration.x >= 0 || Input.acceleration.x <= 0)
 //        {
