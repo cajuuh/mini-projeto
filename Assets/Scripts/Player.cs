@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
 	void HowToMove (){
         //move
         //Vector3 move = new Vector3 (Input.GetAxis("Horizontal"), 0 , 0);
-        Vector3 move = new Vector3(control.rotationRate.y, 0, 0);
+        Vector3 move = new Vector3(Input.acceleration.x, 0, 0);
         transform.position += move * Speed * Time.deltaTime;
 
 		//flip while moving
