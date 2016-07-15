@@ -8,6 +8,7 @@ public class ManagerScript : MonoBehaviour
     [HideInInspector] public GameObject player;
     [HideInInspector] public GameObject camera;
     [HideInInspector] public GameObject coin;
+    [HideInInspector] public GameObject spawn;
 
     //read only
     private readonly string PLAYER = "Player";
@@ -63,6 +64,7 @@ public class ManagerScript : MonoBehaviour
         {
             SetScore(10);
         }
+        SetText();
 
     }
 
@@ -114,13 +116,13 @@ public class ManagerScript : MonoBehaviour
     public void SetScore(int points)
     {
         score += points;
-        SetText();
 
     }
 
     void SetText()
     {
-        scoreText.text = "Pontos: " + score.ToString();
+        float pontos = score + spawn.GetComponent<SpawnPlataforma>().getPontuacao();
+        scoreText.text = "Pontos: " + pontos;
     }
 }
 
