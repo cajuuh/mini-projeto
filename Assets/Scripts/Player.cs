@@ -55,51 +55,38 @@ public class Player : MonoBehaviour {
 
 	void HowToMove (){
         //move
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
 
-//        if (Input.acceleration.x >= 0 || Input.acceleration.x <= 0)
-//        {
-//            Vector3 move = new Vector3(Input.acceleration.normalized.x * sensitivity, 0, 0);
-//
-//            transform.position += move * Speed * Time.deltaTime;
-//
-//            //flip while moving
-//            if (move.x > 0 && !flipped || move.x < 0 && flipped)
-//            {
-//                flipped = !flipped;
-//                Vector3 scale = transform.localScale;
-//                scale.x *= -1;
-//                transform.localScale = scale;
-//
-//            }
-//        }
-//        else if ((Input.acceleration.y >= 0 || Input.acceleration.y <= 0))
-//        {
-//            Vector3 move = new Vector3(Input.acceleration.normalized.y * sensitivity, 0, 0);
-//
-//            transform.position += move * Speed * Time.deltaTime;
-//
-//            //flip while moving
-//            if (move.x > 0 && !flipped || move.x < 0 && flipped)
-//            {
-//                flipped = !flipped;
-//                Vector3 scale = transform.localScale;
-//                scale.x *= -1;
-//                transform.localScale = scale;
-//
-//            }
-//        }
-
-        transform.position += move * Speed * Time.deltaTime;
-
-        //flip while moving
-        if (move.x > 0 && !flipped || move.x < 0 && flipped)
+        if (Input.acceleration.x >= 0 || Input.acceleration.x <= 0)
         {
-            flipped = !flipped;
-            Vector3 scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
+            Vector3 move = new Vector3(Input.acceleration.normalized.x * sensitivity, 0, 0);
 
+            transform.position += move * Speed * Time.deltaTime;
+
+            //flip while moving
+            if (move.x > 0 && !flipped || move.x < 0 && flipped)
+            {
+                flipped = !flipped;
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+
+            }
+        }
+        else if ((Input.acceleration.y >= 0 || Input.acceleration.y <= 0))
+        {
+            Vector3 move = new Vector3(Input.acceleration.normalized.y * sensitivity, 0, 0);
+
+            transform.position += move * Speed * Time.deltaTime;
+
+            //flip while moving
+            if (move.x > 0 && !flipped || move.x < 0 && flipped)
+            {
+                flipped = !flipped;
+                Vector3 scale = transform.localScale;
+                scale.x *= -1;
+                transform.localScale = scale;
+
+            }
         }
     }
 
