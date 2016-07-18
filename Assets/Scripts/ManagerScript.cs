@@ -43,6 +43,7 @@ public class ManagerScript : MonoBehaviour
         SetText();
 		retry.SetActive(false);
 		menu.SetActive(false);
+		FindObjectOfType<AudioSource> ().Play ();
     }
 
     void Awake()
@@ -104,10 +105,12 @@ public class ManagerScript : MonoBehaviour
         gameOverScoreText.text = "Seu score:" + "\n" + score;
 		retry.SetActive (true);
 		menu.SetActive (true);
+		FindObjectOfType<AudioSource> ().Stop ();
     }
 
 	public void RestartGame(){
 		Application.LoadLevel (Application.loadedLevel);
+		FindObjectOfType<AudioSource> ().Play ();
 	}
 
 	public void BackToMenu(){
