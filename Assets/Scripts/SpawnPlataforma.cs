@@ -69,12 +69,12 @@ public class SpawnPlataforma : MonoBehaviour
             //A probabilidade para spawnar plataformas normais eh de 80%
             if (Random.value > 0.2)
             {
-                Spawn();
+                Spawn(false);
             }
             //A probabilidade para spawnar plataformas frageis eh de 20%
             else
             {
-                SpawnFrageis();
+                Spawn(true);
             }
         }
 
@@ -123,23 +123,37 @@ public class SpawnPlataforma : MonoBehaviour
 
     }
 
-    //Metodo que spawna as plataformas
-    private void Spawn()
+    //Metodo que spawna as plataformas, se fragil = true entao spawna as frageis
+    private void Spawn(bool fragil)
     {
         const float alturaMin = -0.2f;
         const float alturaMax = 0.2f;
         float randPositionX = Random.Range(distanceLeft, distanceRight);
         float randPositionY = Random.Range(alturaMin, alturaMax);
         GameObject tempPlataforma = null;
-        for (int i = 0; i < maxPlataforma; i++)
+        if (!fragil)
         {
-            if (plataformas[i].activeSelf == false)
+            for (int i = 0; i < maxPlataforma; i++)
             {
-                tempPlataforma = plataformas[i];
-                break;
+                if (plataformas[i].activeSelf == false)
+                {
+                    tempPlataforma = plataformas[i];
+                    break;
+                }
             }
         }
-
+        else
+        {
+            for (int i = 0; i < maxPlataforma; i++)
+            {
+                if (plataformasFragil[i].activeSelf == false)
+                {
+                    tempPlataforma = plataformasFragil[i];
+                    tempPlataforma.GetComponent<SpriteRenderer>().color = newColor;
+                    break;
+                }
+            }
+        }
         if (tempPlataforma != null)
         {
             tempPlataforma.transform.position = new Vector3(randPositionX, transform.position.y + randPositionY, transform.position.z);
@@ -151,38 +165,6 @@ public class SpawnPlataforma : MonoBehaviour
             if (Random.value <= probabilidadePontuda)
             {
                 spawnPontuda(tempPlataforma.transform);
-            }
-        }
-    }
-
-    //metodo que spawna as plataformas frageis
-    private void SpawnFrageis()
-    {
-        const float alturaMin = -0.2f;
-        const float alturaMax = 0.2f;
-        float randPositionX = Random.Range(distanceLeft, distanceRight);
-        float randPositionY = Random.Range(alturaMin, alturaMax);
-        GameObject tempPlataformaFragil = null;
-        for (int i = 0; i < maxPlataforma; i++)
-        {
-            if (plataformasFragil[i].activeSelf == false)
-            {
-                tempPlataformaFragil = plataformasFragil[i];
-                tempPlataformaFragil.GetComponent<SpriteRenderer>().color = newColor;
-                break;
-            }
-        }
-        if (tempPlataformaFragil != null)
-        {
-            tempPlataformaFragil.transform.position = new Vector3(randPositionX, transform.position.y + randPositionY, transform.position.z);
-            tempPlataformaFragil.SetActive(true);
-            spawnMoeda(tempPlataformaFragil.transform);
-
-            double probabilidadePontuda = 0.1;
-            // probabilidade de aparacer uma paltaforma com espinho junto da plataforma eh de 10 %
-            if (Random.value <= probabilidadePontuda)
-            {
-                spawnPontuda(tempPlataformaFragil.transform);
             }
         }
     }
