@@ -1,6 +1,8 @@
 language: csharp
 solution: mini-projeto.sln
 
+install:
+  -./Scripts/install.sh
+
 script:    # the following commands are just examples, use whatever your build process requires
-  - ./build.sh
-  - ./test.sh
+  - ./Scripts/build.sh
